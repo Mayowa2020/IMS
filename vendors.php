@@ -3,7 +3,8 @@
 
     // delete selected vendor
     if(isset($_POST['delete'])) {
-        $id_to_delete = mysqli_real_escape_string($conn, $_POST['id_to_delete']);
+        $id_to_delete = $_POST['id_to_delete'];
+        // $id_to_delete = mysqli_real_escape_string($conn, $_POST['id_to_delete']);
 
         $sql = "DELETE FROM vendors WHERE id = $id_to_delete";
 

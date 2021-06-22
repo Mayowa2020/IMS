@@ -18,7 +18,8 @@
     }
 
     // query for all categories
-    $sql = 'SELECT * FROM categories';
+    $sql = 'SELECT users.username, users.id, categories.description, categories.category_name, categories.created_at, categories.id FROM users, categories WHERE categories.user_id=users.id';
+
 
     // make query and get result
     $result = mysqli_query($conn, $sql);
@@ -56,7 +57,7 @@
                 <td><?php echo htmlspecialchars($category['category_name']); ?></td>
                 <td><?php echo htmlspecialchars($category['description']); ?></td>
                 <td><?php echo htmlspecialchars($category['created_at']); ?></td>
-                <td><?php echo htmlspecialchars($category['user_id']); ?></td>
+                <td><?php echo htmlspecialchars($category['username']); ?></td>
                 <td>
                     <a href="editcategory.php?id=<?php echo $category['id']; ?>">Edit</a>
                     <!-- DELETE FORM -->

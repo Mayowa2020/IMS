@@ -1,15 +1,15 @@
 <?php
     require_once 'php_action/db_connect.php';
 
-    // delete selected inventory
+    // delete selected purchase
     if(isset($_POST['delete'])) {
         $id_to_delete = mysqli_real_escape_string($conn, $_POST['id_to_delete']);
 
-        $sql = "DELETE FROM inventories WHERE id = $id_to_delete";
+        $sql = "DELETE FROM purchases WHERE id = $id_to_delete";
 
         if(mysqli_query($conn, $sql)) {
             // success
-            header('location: inventories.php');
+            header('location: purchases.php');
 
         } {
             // failure
@@ -18,7 +18,7 @@
     }
 
     // query for all purchases
-    $sql = 'SELECT * FROM purchases';
+    $sql = 'SELECT users.username, users.id, purchases.id, inventories.product_name, purchases.purchase_price, purchases.quantity_purchased, purchases.created_at, vendors.vendor_name FROM users, purchases, inventories, vendors WHERE purchases.inventory_id = inventories.id OR purchases.vendor_id = vendor_id OR purchases.user_id = users.id';
 
     // make query and get result
     $result = mysqli_query($conn, $sql);
@@ -54,12 +54,12 @@
         <?php foreach($purchases as $purchase) { ?>
             <tr>
                 <td><?php echo htmlspecialchars($purchase['id']); ?></td>
-                <td><?php echo htmlspecialchars($purchase['inventory_id']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['product_name']); ?></td>
                 <td><?php echo htmlspecialchars($purchase['purchase_price']); ?></td>
                 <td><?php echo htmlspecialchars($purchase['quantity_purchased']); ?></td>
-                <td><?php echo htmlspecialchars($purchase['vendor_id']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['vendor_name']); ?></td>
                 <td><?php echo htmlspecialchars($purchase['created_at']); ?></td>
-                <td><?php echo htmlspecialchars($purchase['user_id']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['username']); ?></td>
             </tr>
         <?php } ?>
     <tbody>

@@ -17,8 +17,8 @@
         }
     }
 
-    // query for all inventories
-    $sql = 'SELECT * FROM inventories';
+    // query for all columns
+    $sql = "SELECT users.username, users.id, inventories.product_name, categories.id, categories.category_name, inventories.product_quantity, inventories.stock_status, inventories.created_at, inventories.id FROM users, categories, inventories WHERE inventories.category_id=categories.id OR inventories.user_id = users.id";
 
     // make query and get result
     $result = mysqli_query($conn, $sql);
@@ -55,11 +55,11 @@
             <tr>
                 <td><?php echo htmlspecialchars($inventory['id']); ?></td>
                 <td><?php echo htmlspecialchars($inventory['product_name']); ?></td>
-                <td><?php echo htmlspecialchars($inventory['category_id']); ?></td>
+                <td><?php echo htmlspecialchars($inventory['category_name']); ?></td>
                 <td><?php echo htmlspecialchars($inventory['product_quantity']); ?></td>
                 <td><?php echo htmlspecialchars($inventory['stock_status']); ?></td>
                 <td><?php echo htmlspecialchars($inventory['created_at']); ?></td>
-                <td><?php echo htmlspecialchars($inventory['user_id']); ?></td>
+                <td><?php echo htmlspecialchars($inventory['username']); ?></td>
             </tr>
         <?php } ?>
     <tbody>
