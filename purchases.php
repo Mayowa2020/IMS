@@ -17,14 +17,14 @@
         }
     }
 
-    // query for all inventories
-    $sql = 'SELECT * FROM inventories';
+    // query for all purchases
+    $sql = 'SELECT * FROM purchases';
 
     // make query and get result
     $result = mysqli_query($conn, $sql);
 
     // fetch the resulting rows as an array
-    $inventories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $purchases = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     // free result from memory
     mysqli_free_result($result);
@@ -36,30 +36,30 @@
 
 <?php require_once 'includes/header.php'; ?>
 
-<a href='addinventory.php'><button> Add Inventory</button></a>
+<a href='addpurchase.php'><button> Add Purchase</button></a>
 
 <table>
     <thead>
         <tr>
             <th>S/N</th>
             <th>Product Name</th>
-            <th>Category</th>
+            <th>Price</th>
             <th>Quantity</th>
-            <th>Status</th>
+            <th>Vendor</th>
             <th>Created at</th>
             <th>Created by</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach($inventories as $inventory) { ?>
+        <?php foreach($purchases as $purchase) { ?>
             <tr>
-                <td><?php echo htmlspecialchars($inventory['id']); ?></td>
-                <td><?php echo htmlspecialchars($inventory['product_name']); ?></td>
-                <td><?php echo htmlspecialchars($inventory['category_id']); ?></td>
-                <td><?php echo htmlspecialchars($inventory['product_quantity']); ?></td>
-                <td><?php echo htmlspecialchars($inventory['stock_status']); ?></td>
-                <td><?php echo htmlspecialchars($inventory['created_at']); ?></td>
-                <td><?php echo htmlspecialchars($inventory['user_id']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['id']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['inventory_id']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['purchase_price']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['quantity_purchased']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['vendor_id']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['created_at']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['user_id']); ?></td>
             </tr>
         <?php } ?>
     <tbody>
