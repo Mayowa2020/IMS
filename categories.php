@@ -1,7 +1,7 @@
 <?php
     require_once 'php_action/db_connect.php';
 
-    // delete selected vendor
+    // delete selected category
     if(isset($_POST['delete'])) {
         $id_to_delete = mysqli_real_escape_string($conn, $_POST['id_to_delete']);
 
@@ -17,7 +17,7 @@
         }
     }
 
-    // query for all vendors
+    // query for all categories
     $sql = 'SELECT * FROM categories';
 
     // make query and get result
@@ -32,7 +32,6 @@
     // close connection
     mysqli_close($conn);
 
-    // print_r($vendors);
 ?>
 
 <?php require_once 'includes/header.php'; ?>

@@ -13,7 +13,7 @@
         $sql = "INSERT INTO vendors (vendor_name, phone_number, vendor_email, vendor_address) VALUES ('$vendorName', '$vendorPhoneNumber', '$vendorEmail', '$vendorAddress')";
     
         if($conn->query($sql) === TRUE) {
-            header('location: http://localhost/inventory%20management%20system/vendors.php');
+            header('location: vendors.php');
             // $valid['success'] = true;
             // $valid['messages'] = 'Successfully Added';
         } else {
