@@ -7,11 +7,11 @@
         $categoryDescription = $_POST['categoryDescription'];
         $categoryId = $_POST['categoryId'];
     
-        $sql = "UPDATE vendors SET category_name = '$categoryName', description = '$categoryDescription' WHERE id = '$categoryId'";
+        $sql = "UPDATE categories SET category_name = '$categoryName', description = '$categoryDescription' WHERE id = '$categoryId'";
 
         if(mysqli_query($conn, $sql)) {
-            // success
-            header('location: vendors.php');
+            // success -> redirect back to the categories page
+            header('location: categories.php');
         } {
             // failure
             echo 'query error: ' . mysqli_error($conn);
@@ -53,7 +53,7 @@
             <input type='text' name='categoryName' id='categoryName' value=<?php echo htmlspecialchars($category['category_name']); ?> />
             <br /><br />
             <label for='categoryDescription'>Category Description </label>
-            <input type='text' name='categoryDescription' id='categoryDescription' value=<?php echo htmlspecialchars($category['description']); ?> />
+            <input type='text' name='categoryDescription' id='categoryDescription' value=<?php echo $category['description']; ?> />
             <br /><br />
             <input type='hidden' name='categoryId' value=<?php echo htmlspecialchars($category['id']); ?> />
             <button type='submit' name='edit'> Save Changes</button>

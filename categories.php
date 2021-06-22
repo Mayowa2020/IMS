@@ -57,11 +57,11 @@
                 <td><?php echo htmlspecialchars($category['category_name']); ?></td>
                 <td><?php echo htmlspecialchars($category['description']); ?></td>
                 <td><?php echo htmlspecialchars($category['created_at']); ?></td>
-                <td><?php echo htmlspecialchars($category['created_by']); ?></td>
+                <td><?php echo htmlspecialchars($category['user_id']); ?></td>
                 <td>
                     <a href="editcategory.php?id=<?php echo $category['id']; ?>">Edit</a>
                     <!-- DELETE FORM -->
-                    <form action="vendors.php" method="POST">
+                    <form action="categories.php" method="POST">
                         <input type='hidden' name='id_to_delete' value="<?php echo $category['id']; ?>">
                         <button type='submit' name='delete'>Delete</button>
                     </form>
