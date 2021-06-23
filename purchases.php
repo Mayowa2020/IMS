@@ -18,7 +18,7 @@
     }
 
     // query for all purchases
-    $sql = 'SELECT users.username, users.id, purchases.id, inventories.product_name, purchases.purchase_price, purchases.quantity_purchased, purchases.created_at, vendors.vendor_name FROM users, purchases, inventories, vendors WHERE purchases.inventory_id = inventories.id OR purchases.vendor_id = vendor_id OR purchases.user_id = users.id';
+    $sql = 'SELECT users.username, vendors.vendor_name, inventories.product_name, purchases.quantity_purchased, purchases.purchase_price, purchases.id, purchases.created_at FROM (((purchases INNER JOIN inventories ON purchases.inventory_id = inventories.id) INNER JOIN users ON purchases.user_id = users.id) INNER JOIN vendors ON purchases.vendor_id = vendors.id)';
 
     // make query and get result
     $result = mysqli_query($conn, $sql);

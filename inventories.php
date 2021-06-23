@@ -18,7 +18,7 @@
     }
 
     // query for all columns
-    $sql = "SELECT users.username, users.id, inventories.product_name, categories.id, categories.category_name, inventories.product_quantity, inventories.stock_status, inventories.created_at, inventories.id FROM users, categories, inventories WHERE inventories.category_id=categories.id OR inventories.user_id = users.id";
+    $sql = "SELECT users.username, users.id, inventories.product_name, categories.id, categories.category_name, inventories.product_quantity, inventories.stock_status, inventories.created_at, inventories.id FROM ((inventories INNER JOIN categories ON inventories.category_id=categories.id) INNER JOIN users ON inventories.user_id = users.id)";
 
     // make query and get result
     $result = mysqli_query($conn, $sql);
