@@ -18,7 +18,7 @@
     }
 
     // query for all purchases
-    $sql = 'SELECT users.username, vendors.vendor_name, inventories.product_name, purchases.quantity_purchased, purchases.purchase_price, purchases.id, purchases.created_at FROM (((purchases INNER JOIN inventories ON purchases.inventory_id = inventories.id) INNER JOIN users ON purchases.user_id = users.id) INNER JOIN vendors ON purchases.vendor_id = vendors.id)';
+    $sql = 'SELECT users.username, vendors.vendor_name, inventories.product_name, purchases.quantity_purchased, purchases.purchase_price, purchases.total, purchases.id, purchases.created_at FROM (((purchases INNER JOIN inventories ON purchases.inventory_id = inventories.id) INNER JOIN users ON purchases.user_id = users.id) INNER JOIN vendors ON purchases.vendor_id = vendors.id)';
 
     // make query and get result
     $result = mysqli_query($conn, $sql);
@@ -45,6 +45,7 @@
             <th>Product Name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Total Price</th>
             <th>Vendor</th>
             <th>Created at</th>
             <th>Created by</th>
@@ -57,6 +58,7 @@
                 <td><?php echo htmlspecialchars($purchase['product_name']); ?></td>
                 <td><?php echo htmlspecialchars($purchase['purchase_price']); ?></td>
                 <td><?php echo htmlspecialchars($purchase['quantity_purchased']); ?></td>
+                <td><?php echo htmlspecialchars($purchase['total']); ?></td>
                 <td><?php echo htmlspecialchars($purchase['vendor_name']); ?></td>
                 <td><?php echo htmlspecialchars($purchase['created_at']); ?></td>
                 <td><?php echo htmlspecialchars($purchase['username']); ?></td>

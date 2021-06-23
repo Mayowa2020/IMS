@@ -22,15 +22,17 @@
 
     if($_POST) {
         $productId = $_POST['productId'];
-        $purchasePrice = $_POST['purchasePrice'];
-        $quantityPurchased = $_POST['quantityPurchased'];
-        $totalPrice = $purchasePrice * $quantityPurchased;
-        $vendor = $_POST['vendor'];
+        $salesPrice = $_POST['salesPrice'];
+        $quantitySold = $_POST['quantitySold'];
+        $totalPrice = $salesPrice * $quantitySold;
+        $customerName = $_POST['customerName'];
+
+        // $vendor = $_POST['vendor'];
         
         // assign userId to the user currently logged in
         $userId = $_SESSION['id'];
 
-        $sql = "INSERT INTO purchases (inventory_id, purchase_price, quantity_purchased, total, vendor_id, user_id) VALUES ('$productId', '$purchasePrice', '$quantityPurchased', '$totalPrice', '$vendor', '$userId')";
+        $sql = "INSERT INTO sales (inventory_id, sales_price, quantity_sold, total, customer_name, user_id) VALUES ('$productId', '$salesPrice', '$quantitySold', '$totalPrice', '$customerName', '$userId')";
     
         if($conn->query($sql) === TRUE) {
             $sqlFetch = "SELECT product_quantity, stock_status FROM inventories WHERE id=$productId";
@@ -42,27 +44,37 @@
                 $stockStatus = $value['stock_status'];
                 echo $productQuantity;
                 echo $stockStatus;
-                $productQuantity = $productQuantity + $quantityPurchased;
-                echo $productQuantity;
 
-                if($productQuantity == 0) {
-                    $stockStatus = 'out of stock';
-                } elseif(($productQuantity < 10)) {
-                    $stockStatus = 'low stock';
+                if($productQuantity < $quantitySold) {
+
+                    $valid['success'] = false;
+                    $valid['messages'] = "You don't have enough products";
+
                 } else {
-                    $stockStatus = 'in stock';
-                }
 
-                echo $stockStatus;
+                    $productQuantity = $productQuantity - $quantitySold;
+                    echo $productQuantity;
 
-                $sqlUpdate = "UPDATE inventories SET product_quantity = '$productQuantity', stock_status='$stockStatus' WHERE id = '$productId'";
+                    if($productQuantity == 0) {
+                        $stockStatus = 'out of stock';
 
-                if(mysqli_query($conn, $sqlUpdate)) {
-                    // success -> redirect back to the categories page
-                    header('location: purchases.php');
-                } {
-                    // failure
-                    echo 'query error: ' . mysqli_error($conn);
+                    } elseif(($productQuantity < 10)) {
+                        $stockStatus = 'low stock';
+
+                    } else {
+                        $stockStatus = 'in stock';
+                        echo $stockStatus;
+        
+                        $sqlUpdate = "UPDATE inventories SET product_quantity = '$productQuantity', stock_status='$stockStatus' WHERE id = '$productId'";
+        
+                        if(mysqli_query($conn, $sqlUpdate)) {
+                            // success -> redirect back to the categories page
+                            header('location: sales.php');
+                        } {
+                            // failure
+                            echo 'query error: ' . mysqli_error($conn);
+                        }
+                    }
                 }
 
             } else {
@@ -74,7 +86,7 @@
             // $valid['messages'] = 'Successfully Added';
         } else {
             $valid['success'] = false;
-            $valid['messages'] = 'Error while adding purchase';
+            $valid['messages'] = 'Error while adding sales';
         }
 
         $conn->close();
@@ -86,7 +98,7 @@
 
 <?php require_once 'includes/header.php'; ?>
 
-<form action='addpurchase.php' method='POST'>
+<form action='addsales.php' method='POST'>
     <label for='productId'>Product Name</label>
     <select name='productId' id='productId'>
         <?php foreach($products as $product) { ?>
@@ -98,22 +110,14 @@
 
     </select>
     <br /><br />
-    <label for='purchasePrice'>Purchase Price</label>
-    <input type='text' name='purchasePrice' id='purchasePrice' />
+    <label for='salesPrice'>Price per unit</label>
+    <input type='text' name='salesPrice' id='salesPrice' />
     <br /><br />
-    <label for='quantityPurchased'>Quantity Purchased</label>
-    <input type='text' name='quantityPurchased' id='quantityPurchased' />
+    <label for='quantitySold'>Quantity Sold</label>
+    <input type='text' name='quantitySold' id='quantitySold' />
     <br /><br />
-    <label for='vendor'>Vendor</label>
-    <select name='vendor' id='vendor'>
-        <?php foreach($vendors as $vendor) { ?>
-            <option value='<?php echo htmlspecialchars($vendor['id']); ?>'>
-                <?php echo htmlspecialchars($vendor['vendor_name']); ?>
-            </option>
-            
-        <?php } ?>
-
-    </select>
+    <label for='customer'>Customer</label>
+    <input type='text' name='customerName' id='customerName' />
     <br /><br />
     <button type='submit'> Submit</button>
 
