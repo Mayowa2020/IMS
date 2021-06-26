@@ -77,11 +77,8 @@
             $valid['messages'] = 'Error while adding purchase';
         }
 
-        $conn->close();
-
         echo json_encode($valid);
     }
-
 ?>
 
 <?php require_once '../includes/header.php'; ?>
@@ -104,7 +101,6 @@
 
                 </select>
             </div>
-
             <div>
                 <label for='prn'>Purchase reference no (PRN)</label>
                 <input type='text' id='prn' name='prn' />

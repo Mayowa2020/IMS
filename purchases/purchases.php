@@ -28,10 +28,7 @@
 
     // free result from memory
     mysqli_free_result($result);
-
-    // close connection
-    mysqli_close($conn);
-
+  
 ?>
 
 <?php require_once '../includes/header.php'; ?>

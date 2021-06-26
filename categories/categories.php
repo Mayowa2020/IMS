@@ -18,8 +18,8 @@
     }
 
     // query for all categories
-    $sql = 'SELECT users.username, users.id, categories.description, categories.category_name, categories.created_at, categories.id FROM users, categories WHERE categories.user_id=users.id';
-
+    $sql = 'SELECT users.email, users.id, categories.description, categories.category_name, 
+    categories.created_at, categories.id FROM users, categories WHERE categories.user_id=users.id';
 
     // make query and get result
     $result = mysqli_query($conn, $sql);
@@ -29,10 +29,6 @@
 
     // free result from memory
     mysqli_free_result($result);
-
-    // close connection
-    mysqli_close($conn);
-
 ?>
 
 <?php require_once '../includes/header.php'; ?>
@@ -45,8 +41,7 @@
         <a href='addcategory.php'>
             <button><i class="fa fa-plus" aria-hidden="true"></i> New Category</button>
         </a>
-    </div>
-    
+    </div>    
     <div class='field'>
         <form class='field-form'>
             <input type='search' placeholder='Search for category' />
@@ -71,7 +66,7 @@
                         <td><?php echo htmlspecialchars($category['id']); ?></td>
                         <td><?php echo htmlspecialchars($category['category_name']); ?></td>
                         <td><?php echo htmlspecialchars($category['created_at']); ?></td>
-                        <td><?php echo htmlspecialchars($category['username']); ?></td>
+                        <td><?php echo htmlspecialchars($category['email']); ?></td>
                         <td><?php echo htmlspecialchars($category['description']); ?></td>
                         <td>
                             <a href="editcategory.php?id=<?php echo $category['id']; ?>">
@@ -88,6 +83,5 @@
             </tbody>
         </table>
     </div>
-
 
 <?php require_once '../includes/footer.php'; ?>

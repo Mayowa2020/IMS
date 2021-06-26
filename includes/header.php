@@ -1,11 +1,22 @@
-<?php require_once '../php_action/core.php' ?>
+<?php 
+    require_once '../php_action/core.php';
+    $userId = $_SESSION['id'];
+    echo $userId;
+    $nameSql = "SELECT firstname, lastname FROM users WHERE id='$userId'";
+    $nameResult = $conn->query($nameSql);
+                
+   
+        $name = $nameResult->fetch_assoc();
+        $firstname = $name['firstname'];
+        $lastname = $name['lastname'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='../index.css' />
+    <link rel='stylesheet' href='../style.css' />
     <link rel='stylesheet' href='../app.css' />
     <script src="https://use.fontawesome.com/3ca8073125.js"></script>
     <title>Inventory Management Software</title>
@@ -15,7 +26,8 @@
         <p class='title'>Inventory Management System</p>
         <div>
             <img src='../Images/avatar.png' alt='avatar icon'/>
-            <p>Mariam Eluma</p>
+            <p><?php echo $firstname. ' ' .$lastname; ?></p>
+            <a href="../logout.php"> Log Out </a>
         </div>
     </header>
     <div class='main'>

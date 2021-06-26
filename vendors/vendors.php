@@ -29,11 +29,6 @@
 
     // free result from memory
     mysqli_free_result($result);
-
-    // close connection
-    mysqli_close($conn);
-
-    // print_r($vendors);
 ?>
 
 <?php require_once '../includes/header.php'; ?>
@@ -86,6 +81,5 @@
                   
         </table>
     </div>
-
 
 <?php require_once '../includes/footer.php'; ?>

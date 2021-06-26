@@ -89,11 +89,8 @@
             $valid['messages'] = 'Error while adding sales';
         }
 
-        $conn->close();
-
         echo json_encode($valid);
     }
-
 ?>
 
 <?php require_once '../includes/header.php'; ?>

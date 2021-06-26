@@ -4,3 +4,7 @@
     </div>
 </body>
 </html>
+
+
+<!-- close connection -->
+<?php mysqli_close($conn); ?>

@@ -18,20 +18,18 @@
     }
 
     // query for all columns
-    $sql = "SELECT users.username, users.id, inventories.product_name, categories.id, categories.category_name, inventories.product_quantity, inventories.stock_status, inventories.created_at, inventories.id FROM ((inventories INNER JOIN categories ON inventories.category_id=categories.id) INNER JOIN users ON inventories.user_id = users.id)";
+    $sql = "SELECT users.username, users.id, inventories.product_name, categories.id, categories.category_name,
+    inventories.product_quantity, inventories.stock_status, inventories.created_at, inventories.id FROM 
+    ((inventories INNER JOIN categories ON inventories.category_id=categories.id) INNER JOIN users ON inventories.user_id = users.id)";
 
     // make query and get result
     $result = mysqli_query($conn, $sql);
 
     // fetch the resulting rows as an array
-    $inventories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $inventories [] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     // free result from memory
     mysqli_free_result($result);
-
-    // close connection
-    mysqli_close($conn);
-
 ?>
 
 <?php require_once '../includes/header.php'; ?>
@@ -86,8 +84,6 @@
             <p>You currently have no purchase order in your database</p> 
             <a href='addpurchase.html'>Add New Purchase Order</a>
         -->
-
     </div>
-
 
 <?php require_once '../includes/footer.php'; ?>

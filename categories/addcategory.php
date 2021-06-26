@@ -20,9 +20,7 @@
             $valid['success'] = false;
             $valid['messages'] = 'Error while adding vendor';
         }
-
-        $conn->close();
-
+   
         echo json_encode($valid);
     }
 
@@ -41,8 +39,6 @@
                 <label for='categoryDescription'>Description</label>
                 <textarea id='categoryDescription' name='categoryDescription'  ></textarea>
             </div>
-
-            <input type='text' name='categoryDescription' id='categoryDescription' />
 
             <div class='add-action-btn'>
                 <button type='submit'>Save</button>

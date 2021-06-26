@@ -45,13 +45,9 @@
             $valid['messages'] = 'Error while adding vendor';
         }
 
-        $conn->close();
-
         echo json_encode($valid);
     }
-
 ?>
-
 <?php require_once '../includes/header.php'; ?>
 
     <div class='addpurchase'>
@@ -85,8 +81,6 @@
                     <?php } ?>
                 </select>
             </div>
-
-                        
             <div class='add-action-btn'>
                 <button type='submit'>Save</button>
                 <a href='inventories.html'>Cancel</a>

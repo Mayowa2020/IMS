@@ -17,8 +17,7 @@
             echo 'query error: ' . mysqli_error($conn);
         }
     }
-
-   
+  
     // check GET request id param
     if(isset($_GET['id'])) {
         $id = mysqli_real_escape_string($conn, $_GET['id']);
@@ -34,14 +33,7 @@
 
         // free result from memory
         mysqli_free_result($result);
-
-        // close connection
-        mysqli_close($conn);
-
-        // print_r($vendor);
-
     }
-
 ?>
 
 <?php require_once '../includes/header.php'; ?>
@@ -68,6 +60,5 @@
 
         <?php endif; ?>
     </div>
-
 
 <?php require_once '../includes/footer.php'; ?>
