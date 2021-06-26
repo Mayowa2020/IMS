@@ -6,6 +6,6 @@
     // echo $_SESSION['id'];
 
     if(!$_SESSION['id']) {
-        header('location: http://localhost/inventory%20management%20system/index.php');
+        header('location: index.php');
     }
 ?>

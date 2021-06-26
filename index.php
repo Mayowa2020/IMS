@@ -7,7 +7,7 @@
 
     // to prevent user from accessinng log in page when logged in
     if(isset($_SESSION['id'])) {
-        header('location: http://localhost/inventory%20management%20system/dashboard.php');
+        header('location: dashboard.php');
     }
 
     $errors = array();
@@ -46,7 +46,7 @@
                     //set session
                     $_SESSION['id'] = $user_id;
 
-                    header('location: http://localhost/inventory%20management%20system/dashboard.php');
+                    header('location: dashboard.php');
                 } else {
                     $errors[] = 'Incorrect username/password combination';
                 }
@@ -67,6 +67,8 @@
     <title>Inventory Management System</title>
 </head>
 <body>
+    
+
     <form action='<?php echo $_SERVER['PHP_SELF'] ?>' method='POST' id='loginForm'>
         <div>
             <?php if($errors) {

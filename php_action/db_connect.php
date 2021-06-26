@@ -1,7 +1,6 @@
 <?php
-
     // connect to database
-    $conn = mysqli_connect('localhost:3308', 'Moyin', 'moyin"happy', 'inventory_management_software');
+    $conn = mysqli_connect('localhost', 'root', 'mysql', 'ims');
     
     // check connection
     if(!$conn) {
