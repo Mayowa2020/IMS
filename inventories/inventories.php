@@ -18,7 +18,7 @@
     }
 
     // query for all columns
-    $sql = "SELECT users.username, users.id, inventories.product_name, categories.id, categories.category_name,
+    $sql = "SELECT users.email, users.id, inventories.product_name, categories.id, categories.category_name,
     inventories.product_quantity, inventories.stock_status, inventories.created_at, inventories.id FROM 
     ((inventories INNER JOIN categories ON inventories.category_id=categories.id) INNER JOIN users ON inventories.user_id = users.id)";
 
@@ -26,8 +26,8 @@
     $result = mysqli_query($conn, $sql);
 
     // fetch the resulting rows as an array
-    $inventories [] = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+    $inventories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+ 
     // free result from memory
     mysqli_free_result($result);
 ?>
@@ -72,7 +72,7 @@
                     <td><?php echo htmlspecialchars($inventory['product_quantity']); ?></td>
                     <td><?php echo htmlspecialchars($inventory['stock_status']); ?></td>
                     <td><?php echo htmlspecialchars($inventory['created_at']); ?></td>
-                    <td><?php echo htmlspecialchars($inventory['username']); ?></td>
+                    <td><?php echo htmlspecialchars($inventory['email']); ?></td>
                         <td>
                             <button class='del-btn'><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                         </td>

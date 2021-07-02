@@ -20,6 +20,7 @@
         $productName = $_POST['productName'];
         $productQuantity = 0;
         $productCategory = $_POST['productCategory'];
+        $productDescription = $_POST['description'];
         // assign userId to the user currently logged in
         $userId = $_SESSION['id'];
         
@@ -34,7 +35,7 @@
 
         echo $stockStatus;
 
-        $sql = "INSERT INTO inventories (product_name, category_id, product_quantity, stock_status, user_id) VALUES ('$productName', '$productCategory', '$productQuantity', '$stockStatus', '$userId')";
+        $sql = "INSERT INTO inventories (product_name, category_id, product_quantity, product_description, stock_status, user_id) VALUES ('$productName', '$productCategory', '$productQuantity', '$productDescription', '$stockStatus', '$userId')";
     
         if($conn->query($sql) === TRUE) {
             header('location: inventories.php');
@@ -62,11 +63,6 @@
             </div>
 
             <div>
-                <label for='quantity'>Purchase reference no (PRN)</label>
-                <input type='text' id='quantity' name='quantity' />
-            </div>
-
-            <div>
                 <label for='description'>Description</label>
                 <textarea id='description' name='description'  ></textarea>
             </div>
@@ -83,7 +79,7 @@
             </div>
             <div class='add-action-btn'>
                 <button type='submit'>Save</button>
-                <a href='inventories.html'>Cancel</a>
+                <a href='inventories.php'>Cancel</a>
             </div>
         </form>
     </div>

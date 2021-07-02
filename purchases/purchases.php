@@ -52,7 +52,6 @@
             <thead>
                 <tr>
                     <th>Inventory</th>
-                    <th>PRN</th>
                     <th>Vendor</th>
                     <th>Quantity</th>
                     <th>Cost per Inventory</th>

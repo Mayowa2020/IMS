@@ -53,6 +53,7 @@ CREATE TABLE inventories (
   product_name VARCHAR(100) NOT NULL,
   category_id INT NOT NULL,
   product_quantity INT NOT NULL,
+  product_description VARCHAR(250) NOT NULL,
   stock_status VARCHAR(20) NOT NULL,
   created_at DATETIME NOT NULL DEFAULT current_timestamp(),
   user_id INT NOT NULL,
@@ -69,6 +70,7 @@ CREATE TABLE inventories (
 
 CREATE TABLE purchases (
   id INT NOT NULL AUTO_INCREMENT,
+  purchase_note VARCHAR(255) NULL,
   inventory_id INT NOT NULL,
   purchase_price DECIMAL(7,2) NOT NULL,
   quantity_purchased INT NOT NULL,

@@ -64,9 +64,9 @@
                     <tr>
                         <td><?php echo htmlspecialchars($vendor['id']); ?></td>
                         <td><?php echo htmlspecialchars($vendor['vendor_name']); ?></td>
+                        <td><?php echo htmlspecialchars($vendor['vendor_address']); ?></td>
                         <td><?php echo htmlspecialchars($vendor['phone_number']); ?></td>
                         <td><?php echo htmlspecialchars($vendor['vendor_email']); ?></td>
-                        <td><?php echo htmlspecialchars($vendor['vendor_address']); ?></td>
                         <td>
                             <a href="editvendor.php?id=<?php echo $vendor['id']; ?>"><button>Edit <i class="fa fa-pencil" aria-hidden="true"></i></button></a>
                             <!-- DELETE FORM -->

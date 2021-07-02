@@ -22,6 +22,7 @@
 
     if($_POST) {
         $productId = $_POST['productId'];
+        $purchaseNote = $_POST['purchaseNote'];
         $purchasePrice = $_POST['purchasePrice'];
         $quantityPurchased = $_POST['quantityPurchased'];
         $totalPrice = $purchasePrice * $quantityPurchased;
@@ -30,7 +31,7 @@
         // assign userId to the user currently logged in
         $userId = $_SESSION['id'];
 
-        $sql = "INSERT INTO purchases (inventory_id, purchase_price, quantity_purchased, total, vendor_id, user_id) VALUES ('$productId', '$purchasePrice', '$quantityPurchased', '$totalPrice', '$vendor', '$userId')";
+        $sql = "INSERT INTO purchases (inventory_id, purchase_note, purchase_price, quantity_purchased, total, vendor_id, user_id) VALUES ('$productId', '$purchaseNote', '$purchasePrice', '$quantityPurchased', '$totalPrice', '$vendor', '$userId')";
     
         if($conn->query($sql) === TRUE) {
             $sqlFetch = "SELECT product_quantity, stock_status FROM inventories WHERE id=$productId";
@@ -102,11 +103,6 @@
                 </select>
             </div>
             <div>
-                <label for='prn'>Purchase reference no (PRN)</label>
-                <input type='text' id='prn' name='prn' />
-            </div>
-
-            <div>
                 <label for='purchaseNote'>Purchase Notes</label>
                 <textarea id='purchaseNote' name='purchaseNote'  ></textarea>
             </div>
@@ -114,7 +110,6 @@
             <table>
                 <tr>
                     <th>Product Details</th>
-                    <th>Description</th>
                     <th>Quantity</th>
                     <th>Unit Cost</th>
                     <th>Amount</th>
@@ -129,9 +124,6 @@
                             
                         <?php } ?>
                     </select>
-                    </td>
-                    <td>
-                        <input type='text' name='description' placeholder="Enter Description" />
                     </td>
                     <td>
                         <input type='number' name='quantityPurchased' id='quantityPurchased' placeholder="Enter Quantity" />
