@@ -34,13 +34,13 @@
         <nav>
             <ul>
                 <li>
-                    <a href='../dashboard'>
+                    <a href='../dashboard/dashboard.php'>
                         <img src='../Images/dashboard.png' alt='dashboard icon' />
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href='#'>
+                    <a href='../customers/customers.php'>
                         <img src='../Images/customers.png' alt='customers icon' />
                         <span>Customers</span>
                     </a>

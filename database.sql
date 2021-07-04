@@ -101,9 +101,23 @@ CREATE TABLE sales (
   user_id INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (inventory_id) REFERENCES inventories(id),
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (customer_id) REFERENCES customers (id)
 );
 
 -- Dumping data for table `sales`
+
+-- --------------------------------------------------------
+
+CREATE TABLE customers (
+  id INT NOT NULL AUTO_INCREMENT,
+	customer_name VARCHAR(100) NOT  NULL,
+	customer_email VARCHAR(30) NOT NULL,   
+  phone_number VARCHAR(30) NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY(id)
+);
+
+-- Dumping data for table `customers`
 
 -- --------------------------------------------------------

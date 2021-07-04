@@ -51,15 +51,20 @@
 ?>
 <?php require_once '../includes/header.php'; ?>
 
-    <div class='addpurchase'>
+    <div class='addinventory'>
         <span class='heading purchase'>
             <img src='../Images/inventories.png' alt='Inventory icon' />
             <h3>New Inventory</h3>
         </span>
-        <form class='vendor-form' action='addinventory.php' method='POST'>
+        <form class='inventory-form' action='addinventory.php' method='POST'>
             <div>
                 <label for='productName'>Inventory Name</label>
                 <input type='text' id='productName' name='productName' />
+            </div> 
+            
+            <div>
+                <label for='qty'>Quantity</label>
+                <input type='number' id='qty' name='qty' />
             </div>
 
             <div>

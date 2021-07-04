@@ -9,10 +9,7 @@
         $vendorPhoneNumber = $_POST['vendorPhoneNumber'];
         $vendorEmail = $_POST['vendorEmail'];
         $vendorAddress = $_POST['vendorAddress'];
-        //$country = $_POST['country'];
-       // $state =  $_POST['state'];
-        //$city =  $_POST['city'];
-        //$vendorAddress = "'$streetAddress' .', ' . '$city' .', ' .'$state' .', ' .'$country'";
+       
         $sql = "INSERT INTO vendors (vendor_name, phone_number, vendor_email, vendor_address)
         VALUES ('$vendorName', '$vendorPhoneNumber', '$vendorEmail', '$vendorAddress')";
     
@@ -45,7 +42,7 @@
 
             <div>
                 <label for='vendorPhoneNumber'>Phone Number</label>
-                <input type='text' name='vendorPhoneNumber' id='vendorPhoneNumber' />
+                <input type='tel' name='vendorPhoneNumber' id='vendorPhoneNumber' />
             </div>
 
             <div>
